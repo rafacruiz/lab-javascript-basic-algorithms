@@ -114,8 +114,35 @@ function generateParagraphs () {
         }        
     }
     
-    console.log('Número de palabras: ', countWords);
+    console.log("Número de palabras: ", countWords);
     console.log("Número de veces 'et': ", countTimes);
 }
 
 generateParagraphs();
+
+function checkPalindrome (paragraphs) {
+    // Extended version developed
+    let isPalindrome = true;
+
+    if (paragraphs === undefined) {
+        return;
+    }
+
+    const newParagraphs = paragraphs.split(" ").join("").replace(/[^a-zA-Z]/g, '').toLowerCase();
+        
+    for (let i = 0; i < newParagraphs.length / 2; i++) {
+        const charFirst = newParagraphs[i];
+        const charLast = newParagraphs[newParagraphs.length - 1 - i];
+        
+        if (charFirst !== charLast) {
+            isPalindrome = false;
+            break;
+        }
+    }
+
+    return isPalindrome ? "This is Palindrome" : "It is not a palindrome";
+}
+
+const phraseToCheck = "No 'x' in Nixon";
+console.log("Palindromo? ", phraseToCheck);
+console.log(checkPalindrome(phraseToCheck));
